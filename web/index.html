@@ -33,6 +33,21 @@
   <!-- This script installs service_worker.js to provide PWA functionality to
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyA-Op6UhHJVNsYZa_wSKcGleoTFTqeERIE",
+      authDomain: "uncommon2021-81706.firebaseapp.com",
+      projectId: "uncommon2021-81706",
+      storageBucket: "uncommon2021-81706.appspot.com",
+      messagingSenderId: "340521539827",
+      appId: "1:340521539827:web:327c5b4abd8d6f5b753f86"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-firestore.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('flutter-first-frame', function () {

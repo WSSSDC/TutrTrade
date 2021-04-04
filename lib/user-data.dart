@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserData {
-  static String uid = 'ZerxgYzZzrWAYBR5GsT1';
+  static String uid = 'qHIShRii16cHzOgBgKUw';
   static String first = 'Connor';
   static String last = 'Wilson';
   static List<String> skills = [];
