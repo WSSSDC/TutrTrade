@@ -75,7 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
             children: [
               Center(child: CircleAvatar(
                 radius: 50,
-                child: Icon(Icons.person, size: 55),
+                child: SvgPicture.asset('assets/profile.svg', color: Colors.white, height: 55),
               )),
               Container(height: 10),
               Text("Connor Wilson", style: Theme.of(context).textTheme.headline1),
@@ -89,8 +89,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 ],
               ),
               Container(height: 10),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Skills", style: Theme.of(context).textTheme.subtitle1)
+                ),
+              ),
               Wrap(
                 children: _chips,
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 10, 15, 0),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text("Request History", style: Theme.of(context).textTheme.subtitle1)
+                ),
               ),
               Expanded(
                 child: ListView(
@@ -111,15 +125,15 @@ class RequestTile extends StatelessWidget {
   final Request request;
   @override
   Widget build(BuildContext context) {
-    Color coinColor = request.senderId == UserData.uid ? Colors.red : Colors.green;
+    Color coinColor = request.senderId == UserData.uid ? Colors.red.withOpacity(0.5) : Colors.green.withOpacity(0.5);
     coinColor = request.active ? Colors.white54 : coinColor;
     return ListTile(
-      title: Text(request.title, style: TextStyle(color: Colors.white)),
+      title: Text(request.title, style: TextStyle(color: Colors.white54)),
       subtitle: Row(
         children: [
-          Text(request.total.toString(), style: TextStyle(color: coinColor)),
+          Text(request.total.toString(), style: TextStyle(color: coinColor, fontSize: 20)),
           Container(width: 3),
-          SvgPicture.asset('assets/coin.svg', color: coinColor, height: 15)
+          SvgPicture.asset('assets/coin.svg', color: coinColor, height: 18)
         ],
       ),
       trailing: !request.accepted ? MaterialButton(

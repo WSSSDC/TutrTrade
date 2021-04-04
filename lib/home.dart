@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'ask-page.dart';
 import 'request.dart';
 import 'user-data.dart';
@@ -51,7 +52,7 @@ class _HomeState extends State<Home> {
                     },
                     child: CircleAvatar(
                       radius: 28,
-                      child: Icon(Icons.person, size: 32),
+                      child: SvgPicture.asset('assets/profile.svg', color: Colors.white, height: 32),
                     ),
                   )
                 ],

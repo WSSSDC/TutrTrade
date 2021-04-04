@@ -94,7 +94,7 @@ class _MessageTileState extends State<MessageTile> {
       },
       child: ListTile(
         leading: CircleAvatar(
-          child: Icon(Icons.person),
+          child: SvgPicture.asset('assets/profile.svg', color: Colors.white),
         ),
         title: Text(request.title),
         subtitle: Row(

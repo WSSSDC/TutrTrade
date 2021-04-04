@@ -46,6 +46,7 @@ class _RequestPageState extends State<RequestPage> {
               GestureDetector(
                 onTap: _accept,
                 child: Card(
+                  color: Colors.deepPurple[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -55,13 +56,14 @@ class _RequestPageState extends State<RequestPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Accept", style: TextStyle(fontSize: 18)),
+                        Text("Accept", style: TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.w500)),
                         Container(width: 15),
-                        Text(request.total.toString(), style: TextStyle(color: Colors.green, fontSize: 18)),
+                        Text(request.total.toString(), style: TextStyle(color: Colors.green, fontSize: 20, fontWeight: FontWeight.w500)),
                         Container(width: 3),
                         SvgPicture.asset(
                           'assets/coin.svg',
                           color: Colors.green,
+                          height: 18,
                         ),
                       ],
                     ),

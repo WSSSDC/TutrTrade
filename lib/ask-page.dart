@@ -155,6 +155,7 @@ class _AskPageState extends State<AskPage> {
                   Navigator.pop(context);
                 },
                 child: Card(
+                  color: Colors.deepPurple[700],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20.0),
                   ),
@@ -164,13 +165,14 @@ class _AskPageState extends State<AskPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("Post", style: TextStyle(fontSize: 18)),
+                        Text("Post", style: TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.w500)),
                         Container(width: 15),
-                        Text(_cost().toString(), style: TextStyle(color: Colors.red, fontSize: 18)),
+                        Text(_cost().toString(), style: TextStyle(color: Colors.red, fontSize: 20, fontWeight: FontWeight.w500)),
                         Container(width: 3),
                         SvgPicture.asset(
                           'assets/coin.svg',
                           color: Colors.red,
+                          height: 18,
                         ),
                       ],
                     ),

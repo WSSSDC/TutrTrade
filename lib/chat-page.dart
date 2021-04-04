@@ -53,7 +53,7 @@ class _ChatPageState extends State<ChatPage> {
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(16, 20, 25, 1),
         title: CircleAvatar(
-          child: Text("VV", style: TextStyle(color: Colors.black))
+          child: SvgPicture.asset('assets/profile.svg', color: Colors.white),
         ),
         actions: [
           Padding(

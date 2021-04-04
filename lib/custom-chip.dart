@@ -21,11 +21,11 @@ class _CustomChipState extends State<CustomChip> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
       child: FilterChip(
-        selectedColor: Colors.black87,
+        selectedColor: Colors.deepPurple,
+        backgroundColor: Color.fromRGBO(16, 20, 25, 1),
         labelStyle: TextStyle(
-          color: selected ? Colors.white : Colors.black
+          color: selected ? Colors.black : Colors.white
         ),
-        showCheckmark: false,
         selected: selected,
         label: Text(title), 
         onSelected: (v){
