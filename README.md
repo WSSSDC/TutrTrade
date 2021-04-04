@@ -1,3 +1,5 @@
+<img width="1440" alt="Screen Shot 2021-04-04 at 1 17 58 PM" src="https://user-images.githubusercontent.com/34176562/113517126-3e49a900-954c-11eb-8a1b-789ae4c24f0c.png">
+
 # TutrTrade
 Built by Arjun Sarao & Connor Wilson
 
@@ -34,3 +36,7 @@ We started by looking for inspiration on dribble, after we had compiled a board 
 * Add voice and video call options to the tutoring.
 * Other gamification strategies?
 * Make notifications and popups for various events
+
+![gallery](https://user-images.githubusercontent.com/34176562/113517145-528da600-954c-11eb-8abf-9d313d51935b.jpg)
+![gallery-2](https://user-images.githubusercontent.com/34176562/113517167-620cef00-954c-11eb-9549-47b53eb7509f.jpg)
+![gallery-3](https://user-images.githubusercontent.com/34176562/113517184-689b6680-954c-11eb-8706-415fcbc9a22f.jpg)
