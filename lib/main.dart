@@ -1,33 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'profile-page.dart';
-import 'request-card.dart';
-import 'ask-page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'user-data.dart';
+import 'home.dart';
+import 'messages-page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        backgroundColor: Colors.black54,
-        textTheme: TextTheme(
-          headline1: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.white
+    return FutureBuilder(
+      future: _initialization,
+      builder: (context, snapshot) {
+        if(snapshot.connectionState == ConnectionState.done)
+        return MaterialApp(
+          theme: ThemeData(
+            backgroundColor: Colors.black54,
+            primarySwatch: Colors.purple,
+            unselectedWidgetColor: Colors.white,
+            textTheme: TextTheme(
+              headline1: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                color: Colors.white
+              ),
+              subtitle1: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+                color: Colors.white
+              ),
+            )
           ),
-          subtitle1: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Colors.white
+          home: MyHomePage(),
+        );
+        return MaterialApp(
+          home: Scaffold(
+            body: Center(
+              child: CircularProgressIndicator.adaptive(),
+            ),
           ),
-        )
-      ),
-      home: MyHomePage(),
+        );
+      }
     );
   }
 }
@@ -39,9 +58,20 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentNavIndex = 0;
+  Widget _currentPage = Home();
+  List<Widget> _pages = [Home(), MessagesPage()];
+ 
+  @override
+  void initState() {
+    setState(() => UserData.getData());
+    super.initState();
+  }
 
   _onNavBarItemTap(int index) {
-    setState(() => _currentNavIndex = index);
+    setState((){
+      _currentNavIndex = index;
+      _currentPage = _pages[index];
+    });
   }
 
   @override
@@ -65,80 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: SvgPicture.asset(
-              'assets/calendar.svg',
+              'assets/chat.svg',
               color: _currentNavIndex == 1 ? Colors.purpleAccent : Colors.white,
-            ),
-            label: ''
-          ),
-          BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/history.svg',
-              color: _currentNavIndex == 2 ? Colors.purpleAccent : Colors.white,
             ),
             label: ''
           ),
         ],
       ),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(15.0),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: [
-                  Expanded(child: Container()),
-                  GestureDetector(
-                    onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (_) => ProfilePage()));
-                    },
-                    child: CircleAvatar(
-                      radius: 28,
-                    ),
-                  )
-                ],
-              ),
-              Container(height: 15),
-              Text("Recent Requests", style: Theme.of(context).textTheme.headline1),
-              Container(height: 15),
-              Expanded(
-                child: ListView(
-                  children: [
-                    RequestCard(),
-                    RequestCard(),
-                    RequestCard(),
-                    RequestCard(),
-                  ],
-                ),
-              ),
-              Container(
-                decoration: new BoxDecoration(
-                  boxShadow: [
-                    new BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 8,
-                    ),
-                  ],
-                ),
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(70, 10, 160, 1)
-                  ),
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => AskPage()));
-                  },
-                  child: Container(
-                    height: 40,
-                    width: 100,
-                    child: Center(
-                      child: Text("Ask")
-                    ),
-                  ),
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
+      body: _currentPage,
     );
   }
 }

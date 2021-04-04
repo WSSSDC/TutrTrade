@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'request.dart';
 import 'request-page.dart';
 
 class RequestCard extends StatefulWidget {
+  RequestCard(this.request);
+  final Request request;
+
   @override
-  _RequestCardState createState() => _RequestCardState();
+  _RequestCardState createState() => _RequestCardState(request);
 }
 
 class _RequestCardState extends State<RequestCard> {
+  _RequestCardState(this.request);
+  final Request request;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_) => RequestPage()));
+        Navigator.push(context, MaterialPageRoute(builder: (_) => RequestPage(request)));
       },
       child: Padding(
         padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
@@ -33,14 +40,14 @@ class _RequestCardState extends State<RequestCard> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("Help with calculus homework", style: Theme.of(context).textTheme.subtitle1),
+                      Text(request.title, style: Theme.of(context).textTheme.subtitle1),
                     ],
                   ),
                   Container(height: 5),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      Text("30 min", style: TextStyle(
+                      Text(request.time.toString() + ' min', style: TextStyle(
                         color: Colors.white54
                       )),
                     ],
@@ -48,12 +55,12 @@ class _RequestCardState extends State<RequestCard> {
                   Expanded(child: Container()),
                   Row(
                     children: [
-                      SvgPicture.asset(
+                      /*SvgPicture.asset(
                         'assets/calculator.svg',
                         color: Colors.white,
-                      ),
+                      ),*/
                       Expanded(child: Container()),
-                      Text("100", style: TextStyle(color: Colors.green)),
+                      Text(request.total.toString(), style: TextStyle(color: Colors.green)),
                       Container(width: 3),
                       SvgPicture.asset(
                         'assets/coin.svg',
